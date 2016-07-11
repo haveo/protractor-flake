@@ -1,10 +1,10 @@
 export default function (output = '') {
   let match = null
-  let CUCUMBERJS_TEST = /^\d+ scenarios?/m
+  let CUCUMBERJS_TEST = /^(\[[^\]]+\] )?\d+ scenarios?/m
   let failedSpecs = new Set()
 
   if (CUCUMBERJS_TEST.test(output)) {
-    let FAILED_LINES = /(.*?):\d+ # Scenario:.*/g
+    let FAILED_LINES = /([^\n ]*?):\d+ # Scenario:.*/g
     while (match = FAILED_LINES.exec(output)) { // eslint-disable-line no-cond-assign
       failedSpecs.add(match[1])
     }
